@@ -1,47 +1,9 @@
 <template>
   <header>
-    <div class="top-box">
-
-      <div class="box top-box"><a href="/login">登录</a>
-      </div>
-      <div class="box top-box"><a href="/reg">注册</a>
-      </div>
-
-      <div class="box bottom-box">
-      <a href="/logout"><p>退出登录</p></a>
-      </div>
-    </div>
+    <Header-top></Header-top>
     <nav>
-      <ul class="navbar">
-        <li>
-          <a href="/blog">首页</a>
-        </li>
-        <li>
-          <a href="/blog/articlelist?by[type_id]=5b16cd78bbe59122b43bf2c1">Web前端</a>
-        </li>
-        <li>
-          <a href="/blog/articlelist?by[type_id]=5b198d59be1c73036d50c176">服务端</a>
-        </li>
-        <li>
-          <a href="/blog/articlelist?by[type_id]=5b16ce950100982448b19d55">数据库</a>
-        </li>
-        <li>
-          <a href="/iresume">个人简历</a>
-        </li>
-      </ul>
-      <div class="rt">
-        <div class="s-wrap">
-          <div :class="{'search-box':true,'show':searchBoxIsShow}" @mouseover="searchBoxIsShow=true" @mouseout="sFn" id="search_box">
-            <div class="s-btn" ></div>
-            <div class="input-box" >
-              <input type="text" class="search" v-model="keywords" placeholder="search">
-              <div class="msg-box"></div>
-            </div>
-          </div>
-          <div class="dropdown search-dropdown hide">
-          </div>
-        </div>
-      </div>
+      <Header-navbar></Header-navbar>
+      <Header-search></Header-search>
     </nav>
   </header>
 </template>
@@ -461,19 +423,14 @@ header {
 
 
 <script>
+import Topitem from "./topitem.vue";
+import Navbar from "./navbar.vue";
+import Search from "./search.vue";
 export default {
-  data() {
-    return {
-      keywords: "",
-      searchBoxIsShow: false
-    };
-  },
-  methods: {
-    sFn($event) {
-      let kws = this.keywords;
-      kws === "" || kws === null ? (this.searchBoxIsShow = false) : "";
-    }
-  },
-  computed: {}
+  components: {
+    "Header-navbar": Navbar,
+    "Header-top": Topitem,
+    "Header-search": Search
+  }
 };
 </script>
