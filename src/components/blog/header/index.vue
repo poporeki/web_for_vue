@@ -1,6 +1,8 @@
 <template>
   <header>
-    <Header-top></Header-top>
+    <transition enter-active-class="animated fadeIn">
+      <Header-top v-if="true"></Header-top>
+    </transition>
     <nav>
       <Header-navbar></Header-navbar>
       <Header-search></Header-search>
@@ -13,39 +15,6 @@
 @font-face {
   font-family: "Loto";
   src: url("https://fonts.googleapis.com/css?family=Lato:300");
-}
-html,
-body {
-  font-family: "Lato", "Microsoft YaHei", sans-serif;
-  font-size: 14px;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  color: $color-font;
-  font-size: 100%;
-  font-size: 16px;
-  font-size: 1em;
-  width: 100%; // background-image: url(/images/dark_geometric2.png);
-  background-color: $color-bg;
-
-  overflow-x: hidden;
-}
-
-a {
-  color: #fff;
-  text-decoration: none;
-}
-
-ul {
-  margin: 0;
-  padding: 0;
-}
-
-li {
-  list-style: none;
 }
 
 @media (width: 360px) {
@@ -105,65 +74,9 @@ li {
   }
 }
 
-.wrapper,
-header {
-  position: relative;
-  max-width: 1190px;
-  margin: 0 auto;
-  padding: 0 10px;
-  box-sizing: border-box;
-}
-
-.wrapper {
-  min-height: 500px;
-}
-
 header {
   position: relative;
   max-height: 300px;
-
-  .top-box {
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    display: flex;
-    flex-direction: row;
-
-    .box {
-      position: relative;
-      width: 50px;
-      height: 20px;
-      right: 5px;
-      margin-bottom: 5px;
-      margin-left: 5px; // background-color: rgba(0, 0, 0, 0.712);
-
-      &:nth-child(even) {
-        > a {
-          border-left: 1px solid rgb(139, 139, 139);
-        }
-      }
-
-      > a {
-        position: absolute;
-        display: block;
-        height: 100%;
-        width: 100%;
-        left: 0;
-        top: 0;
-        line-height: 20px;
-        font-size: 12px;
-        text-align: center;
-
-        > p {
-          position: absolute;
-          margin: 0;
-          padding: 0;
-          top: 50%;
-          transform: translateY(-50%);
-        }
-      }
-    }
-  }
 
   nav {
     display: flex;

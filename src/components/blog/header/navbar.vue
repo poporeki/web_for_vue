@@ -1,15 +1,18 @@
 <template>
-  <ul class="navbar">
-    <li v-for="item in navlist" :key='item.id'>
-      <a :href="item.href">{{item.name}}</a>
-    </li>
-  </ul>
+  <transition enter-active-class="animated flipInX">
+    <ul class="navbar" v-if='isShow'>
+      <li v-for="(item,idx) in navlist" :key='idx'>
+        <a :href="item.href">{{item.name}}</a>
+      </li>
+    </ul>
+  </transition>
 </template>
 
 <script>
 export default {
   data() {
     return {
+      isShow: false,
       navlist: [
         { name: "首页", href: "/blog" },
         {
@@ -27,6 +30,9 @@ export default {
         { name: "个人简历", href: "/iresume" }
       ]
     };
+  },
+  mounted() {
+    this.isShow = true;
   }
 };
 </script>
