@@ -13,7 +13,7 @@
   </div>
 </template>
 <style lang="scss">
-@import "../../../../public/scss/mixins/_set-color.scss";
+@import "../../../assets/scss/mixins/_set-color.scss";
 .articletag-list {
   display: flex;
   flex-wrap: wrap;
@@ -104,7 +104,7 @@ export default {
     getData() {
       let _this = this;
       this.$axios
-        .get("https://localhost:3000/blog/gettags")
+        .get("http://192.168.199.208:3000/blog/gettags")
         .then(({ data }) => {
           _this.taglist = data;
         });

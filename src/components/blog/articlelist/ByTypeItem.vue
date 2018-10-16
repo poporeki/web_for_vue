@@ -33,15 +33,7 @@ export default {
     CommonItem
   },
   created() {
-    console.log("列表");
-    let query = "";
-    let path = this.$route.fullPath;
-    if (path.split("?")[1]) {
-      query = path.split("?")[1];
-    }
-
-    this.requestUrl = this.originalRequestUrl + "?" + query;
-    let a = true;
+    this.requestUrl = encodeURIComponent(this.originalRequestUrl);
   }
 };
 </script>

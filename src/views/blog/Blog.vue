@@ -15,11 +15,12 @@
     </div>
 
     <blog-footer></blog-footer>
+    <blog-sidebar></blog-sidebar>
   </div>
 </template>
 
 <style lang="scss">
-@import "../../../public/scss/mixins/_set-color.scss";
+@import "../../assets/scss/mixins/_set-color.scss";
 html {
   height: 100%;
   width: 100%;
@@ -116,8 +117,9 @@ header {
 import Header from "../../components/blog/header";
 import Body from "../../components/blog/home";
 import Footer from "../../components/blog/footer";
-import "../../../public/css/icon/blog.css";
-import "../../../node_modules/progressive-image/dist/index.css";
+import Sidebar from "../../components/blog/sidebar";
+import "../../assets/css/icon/blog.css";
+import "../../assets/css/progressive-image.css";
 export default {
   name: "Blog",
   data() {
@@ -137,7 +139,8 @@ export default {
   components: {
     "blog-header": Header,
     "blog-body": Body,
-    "blog-footer": Footer
+    "blog-footer": Footer,
+    "blog-sidebar": Sidebar
   },
   mounted() {
     console.log("blog");

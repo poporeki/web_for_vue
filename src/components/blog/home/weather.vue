@@ -127,7 +127,7 @@ export default {
       console.log("aaaa");
       let _this = this;
       this.$axios
-        .get("https://localhost:3000/blog/getWeather", { geolocation: geolo })
+        .get("http://192.168.199.208:3000/blog/getWeather", { geolocation: geolo })
         .then(({ data }) => {
           let wData = data.lives[0];
           console.log(wData);

@@ -8,7 +8,7 @@
   </div>
 </template>
 <style lang="scss">
-@import url("../../../../public/scss/mixins/_set-color.scss");
+@import "../../../assets/scss/mixins/_set-color.scss";
 .hot-box {
   display: flex;
   position: relative;

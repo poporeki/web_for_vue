@@ -69,7 +69,7 @@ export default {
       let _this = this;
 
       console.log("logout");
-      this.$axios.post("https://localhost:3000/logout").then(({ data }) => {
+      this.$axios.post("http://192.168.199.208:3000/logout").then(({ data }) => {
         console.log("logout success");
         data.status ? (_this.$store.state.isLogin = false) : "";
       });

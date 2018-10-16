@@ -40,18 +40,9 @@
     </transition-group>
   </div>
 </template>
-<style lang="scss">
-@import "../../../../public/scss/mixins/_set-color.scss";
-@keyframes flipXIn {
-  0% {
-    opacity: 0;
-    transform: scale(1) rotateX(-70deg);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) rotateX(0);
-  }
-}
+<style lang="scss" scoped>
+@import "../../../assets/scss/mixins/_set-color.scss";
+
 .article-list {
   width: 80%;
   animation: translate_LeftToRight 1s forwards;
@@ -264,7 +255,7 @@ export default {
       console.log(111);
       let _this = this;
       this.$axios
-        .get("https://localhost:3000/blog/getartlist")
+        .get("http://192.168.199.208:3000/blog/getartlist")
         .then(({ data }) => {
           _this.isRequest = false;
           console.log(data);

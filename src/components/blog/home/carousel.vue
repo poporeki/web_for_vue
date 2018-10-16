@@ -17,7 +17,7 @@
 
 </template>
 <style lang="scss" >
-@import "../../../../public/scss/mixins/_set-color.scss";
+@import "../../../assets/scss/mixins/_set-color.scss";
 
 .banner {
   max-height: 400px;
@@ -89,9 +89,14 @@ export default {
   },
   methods: {
     getData() {
+      console.log("getCarousel");
       let _this = this;
       this.$axios
-        .get("https:localhost:3000/blog/getCarousel")
+        .get("http://192.168.199.208:3000/blog/getCarousel", {
+          by: {
+            type: 1213123131312312
+          }
+        })
         .then(({ data }) => {
           _this.isRequest = false;
           _this.carouData = data;

@@ -14,6 +14,7 @@
   </div>
 </template>
 <style lang="scss">
+@import "../../../assets/scss/mixins/_set-color.scss";
 .bread {
   margin-bottom: 50px;
   padding: 5px 0;

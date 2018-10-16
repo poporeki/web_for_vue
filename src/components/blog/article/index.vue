@@ -6,7 +6,7 @@
 
         <article-content :art='articleData.arcInfo'></article-content>
         <div class="line"></div>
-        <article-comment :artTotal="articleData.arcTotal" :artComms="articleData.arcComms"></article-comment>
+        <article-comment :toComment='isToComment' :artTotal="articleData.arcTotal" :artComms="articleData.arcComms"></article-comment>
       </section>
     </transition>
   </div>
@@ -25,11 +25,12 @@ section.article-wrapper {
 import Loading from "../../../views/Loading";
 import BreadCrumb from "./BreadcrumbItem";
 import ArticleContent from "./ArcConItem";
-import ArticleComment from "./BreadcrumbItem";
+import ArticleComment from "./CommentItem";
 export default {
   data() {
     return {
       isShow: false,
+      isToComment: false,
       articleData: {}
     };
   },
@@ -41,9 +42,10 @@ export default {
   },
   methods: {
     getArticle() {
+      console.log("geetarticle");
       let _this = this;
       this.$axios
-        .get("https://localhost:3000/blog/article/a/" + this.arcid)
+        .get("http://192.168.199.208:3000/blog/article/a/" + this.arcid)
         .then(({ data }) => {
           console.log(`文章:${data.data}`);
           if (data.status && data.code === 404) {
@@ -53,8 +55,12 @@ export default {
             return;
           }
           _this.isShow = true;
+          _this.isComment();
           _this.articleData = data.data;
         });
+    },
+    isComment() {
+      this.$route.hash === "#comment" ? (this.isToComment = true) : "";
     }
   },
   computed: {

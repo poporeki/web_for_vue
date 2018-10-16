@@ -3,7 +3,7 @@
   <section class="comment-block" id="comment">
     <h3>发表评论</h3>
     <div class="add-comm clearfix">
-      <textarea name="comm_textarea" class="comm-textarea" id="comm_textarea"></textarea>
+      <textarea @keyup="typing($event)" name="comm_textarea" class="comm-textarea" id="comm_textarea"></textarea>
       <a href="javascript:void(0);" class="comm-submit-btn" data-attr="">提交</a>
     </div>
     <div class="comm-list">
@@ -108,7 +108,7 @@
   </section>
 </template>
 <style lang="scss">
-@import "../../../../public/scss/mixins/_set-color.scss";
+@import "../../../assets/scss/mixins/_set-color.scss";
 .comment-block {
   h3 {
     padding: 10px 0;
@@ -407,7 +407,51 @@
 
 <script>
 export default {
-  props: ["artTotal", "artComms"]
+  props: ["artTotal", "artComms", "toComment"],
+  methods: {
+    /* 跳转到锚点 */
+    goAnchor(el) {
+      setTimeout(() => {
+        let event = document.getElementById(el);
+        let offTop = event.offsetTop;
+        document.body.scrollTop = offTop; // chrome
+        document.documentElement.scrollTop = offTop; // firefox
+      }, 100);
+    },
+    typing(ev) {
+      console.log("as:" + ev);
+      let target = ev.currentTarget;
+      let nextSibling = target.nextSibling;
+      if (target.value === "") return this.removeClass(nextSibling, "show");
+
+      if (nextSibling.tagName === "A") {
+        this.addClass(nextSibling, "show");
+      }
+    },
+    addClass(el, name) {
+      let className = el.className;
+      let arr = className.split(" ");
+      let newArr = arr.filter(value => {
+        return value === name;
+      });
+      if (newArr.length !== 0) return;
+      el.className += " " + name;
+    },
+    removeClass(el, name) {
+      let className = el.className;
+      let arr = className.split(" ");
+      let filter = arr.filter(value => {
+        return value !== name;
+      });
+      filter.join(" ");
+      el.className = filter.join(" ");
+    }
+  },
+  mounted() {
+    console.log("comment ishow");
+    /* 是否锚点到评论区 */
+    this.toComment === true ? this.goAnchor("comment") : "";
+  }
 };
 </script>
 

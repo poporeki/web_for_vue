@@ -1,6 +1,8 @@
 <template>
   <ul class="article-list" @scroll="scrolls" ref="ulArclist">
-    <li v-if="isInit&&arcList.length===0">没有相关内容</li>
+    <transition enter-active-class="animated flipInX">
+      <li v-if="isInit&&(!arcList||arcList.length===0)">没有相关内容</li>
+    </transition>
 
     <li v-for="(arc,idx) in arcList" class="article-list-item" :key="idx">
       <a :href="'/blog/article/'+ arc.artid">
@@ -15,8 +17,11 @@
         </div>
       </a>
     </li>
-    <li v-if='isOver'>没有数据</li>
-    <li v-if='this.$store.state.showLoading'>
+    <li v-if='isOver' style="text-align:center;">--THE END--</li>
+    <transition enter-active-class="animated fadeInDown" leave-active-class="animated flipOutX">
+      <li v-if='isResuestError' @click="this.getNewData">拉取数据失败，点击重试</li>
+    </transition>
+    <li v-if='!isResuestError&&this.isRequest'>
       <div class="loading-ani-articlelist"></div>
     </li>
   </ul>
@@ -26,8 +31,6 @@
 .loading-ani-articlelist {
   position: relative;
   padding: 30px;
-  width: 100%;
-  height: 100%;
 
   &:after,
   &:before {
@@ -168,9 +171,11 @@ export default {
     return {
       page: 1,
       isInit: false,
+      isResuestError: false,
       limit: 10,
       isOver: false,
       isScroll: false,
+      isRequest: false,
       arcList: []
     };
   },
@@ -183,23 +188,24 @@ export default {
       console.log("commmm");
       if (this.isOver) return;
       let ref = this.$refs;
-      var scrollTop = ref.ulArclist.offsetTop;
-      var scrollHeight = ref.ulArclist.clientHeight;
-      var offsetHeight = document.documentElement.scrollTop;
-      var sTop = document.documentElement.offsetHeight;
-      var RemainingHeight = scrollHeight + scrollTop;
+      let scrollTop = ref.ulArclist.offsetTop;
+      let scrollHeight = ref.ulArclist.clientHeight;
+      let offsetHeight = document.documentElement.scrollTop;
+      let sTop = document.documentElement.offsetHeight;
+      let RemainingHeight = scrollHeight + scrollTop;
       if (
         RemainingHeight - (offsetHeight + sTop) < 100 &&
         this.isScroll === false
       ) {
         this.isScroll = true;
         this.getNewData();
-        var a = /\[[^\}]+\]/;
       }
     },
     getNewData() {
       const that = this;
       if (!this.requestUrl) return;
+      this.isResuestError = false;
+      this.isRequest = true;
       this.$axios
         .post(this.requestUrl, {
           page: this.page,
@@ -207,34 +213,37 @@ export default {
           isGlobalLoading: false
         })
         .then(({ data }) => {
+          that.isRequest = false;
           if (data.status === 0) {
             that.isOver = true;
             return;
           }
           that.isScroll = false;
           let d = data.data;
-          d.map((value, index) => {
+          if (!d) return;
+          d.map(value => {
             that.$set(that.arcList, that.arcList.length, value);
           });
           that.page++;
         })
-        .catch(err => {
+        .catch(() => {
+          that.isResuestError = true;
           that.isScroll = false;
         });
     },
-    getData() {
+    getArticlelistData() {
       const that = this;
       console.log("all");
       this.$axios.post(this.requestUrl).then(({ data }) => {
-        console.log(data);
         that.isInit = true;
+        if (!data.data) return;
         that.arcList = data.data;
         this.isS();
       });
     }
   },
   created() {
-    this.getData();
+    this.getArticlelistData();
   }
 };
 </script>

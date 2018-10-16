@@ -17,7 +17,7 @@
   </section>
 </template>
 <style lang="scss">
-@import "../../../../public/scss/mixins/_set-color.scss";
+@import "../../../assets/scss/mixins/_set-color.scss";
 section.classify {
   position: relative;
   width: 100%;
@@ -146,7 +146,7 @@ export default {
   methods: {
     getTypeList() {
       let _this = this;
-      this.$axios.get("https:localhost:3000/blog/gettype").then(({ data }) => {
+      this.$axios.get("http://192.168.199.208:3000/blog/gettype").then(({ data }) => {
         _this.typelist = data;
       });
     }

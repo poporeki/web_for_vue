@@ -2,7 +2,7 @@
   <div class="comment-top-box">
     <h2>最新评论</h2>
     <div class="artcomm-list">
-      <a v-for="item in commlist" :key="item.id" class='comm-lk' href="/blog/article/<%=commList[i].article[0]._id %>#comment">
+      <a v-for="item in commlist" :key="item.id" class='comm-lk' :href="'/blog/article/'+item.article[0]._id+'#comment'">
         <h6 class="arc-tit" :title="item.article[0].title">
           {{item.article[0].title}}
         </h6>
@@ -26,10 +26,6 @@
     margin: 0;
     padding: 0;
     font-size: 1.1rem;
-    width: auto;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   .comm-lk {
@@ -75,7 +71,7 @@ export default {
     getData() {
       let _this = this;
       this.$axios
-        .get("https://localhost:3000/blog/getcommtop")
+        .get("http://192.168.199.208:3000/blog/getcommtop")
         .then(({ data }) => {
           _this.commlist = data;
         });

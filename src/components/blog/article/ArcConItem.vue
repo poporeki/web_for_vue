@@ -39,7 +39,7 @@
   </article>
 </template>
 <style lang="scss">
-@import "../../../../public/scss/mixins/_set-color.scss";
+@import "../../../assets/scss/mixins/_set-color.scss";
 .article-header {
   .art-title {
     > h2 {
@@ -79,6 +79,9 @@
     color: #70917e;
     word-wrap: break-word;
     text-decoration: underline;
+  }
+  img {
+    width: 100%;
   }
   blockquote {
     padding: 0;

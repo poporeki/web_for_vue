@@ -396,7 +396,7 @@ export default {
       this.show = true;
       this.logining = true;
       this.$axios
-        .post("https://localhost:3000/login", {
+        .post("http://192.168.199.208:3000/login", {
           uname: this.username,
           upwd: this.password
         })

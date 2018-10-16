@@ -1,5 +1,5 @@
 <template>
-  <div v-if="showLoading" class="loading-ani-searchlike">
+  <div v-if="isLoading" class="loading-ani-searchlike">
 
   </div>
 </template>
@@ -33,11 +33,8 @@
 }
 </style>
 <script>
-import { mapGetters } from "vuex";
 export default {
-  computed: {
-    ...mapGetters(["showLoading"])
-  }
+  props: ["isLoading"]
 };
 </script>
 

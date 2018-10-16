@@ -1,3 +1,29 @@
+<template>
+  <aside class='l-aside'>
+    <a href="javascript:void(0);" class="sidebar-btn ">
+      <p>YANSK</p>
+    </a>
+    <img src="/images/logo.png" class="img-logo" alt="logo">
+    <ul class="navbar">
+      <li class="aaa ani1">
+        <a href="/blog"><span>首页</span></a>
+      </li>
+      <li>
+        <a href="/blog/articlelist?by[type_id]=5b16cd78bbe59122b43bf2c1"><span>Web前端</span></a>
+      </li>
+      <li>
+        <a href="/blog/articlelist?by[type_id]=5b198d59be1c73036d50c176"><span>服务端</span></a>
+      </li>
+      <li>
+        <a href="/blog/articlelist?by[type_id]=5b16ce950100982448b19d55"><span>数据库</span></a>
+      </li>
+      <li>
+        <a href="/iresume"><span>个人简历</span></a>
+      </li>
+    </ul>
+  </aside>
+</template>
+<style lang="scss">
 aside.l-aside {
   position: fixed;
   height: 100%;
@@ -6,7 +32,7 @@ aside.l-aside {
   left: 0;
   background-color: #fff;
   box-shadow: 0 0 20px #000;
-  transition: transform .5s ease;
+  transition: transform 0.5s ease;
   transform: translateX(-100%);
   z-index: 1000;
   .sidebar-btn {
@@ -21,14 +47,14 @@ aside.l-aside {
     box-shadow: 0 0 20px #000;
     z-index: 11;
     transform: rotate(90deg);
-    transition: background-color .3s ease, transform 1s ease .5s;
+    transition: background-color 0.3s ease, transform 1s ease 0.5s;
     overflow: hidden;
     &.go {
       p {
         display: none;
       }
       background-color: rgba(0, 0, 0, 1);
-      animation: goUser .5s forwards;
+      animation: goUser 0.5s forwards;
     }
     @keyframes goUser {
       0% {
@@ -44,13 +70,13 @@ aside.l-aside {
       padding: 0;
       margin: 0;
       margin-top: -55%;
-      font-size: .5rem;
+      font-size: 0.5rem;
       text-align: center;
       color: #fff;
       text-shadow: 0 0 10px #fff;
       letter-spacing: 5px;
       transform: translateY(-100%);
-      transition: transform .5s ease;
+      transition: transform 0.5s ease;
     }
   }
   &:hover {
@@ -76,7 +102,7 @@ aside.l-aside {
     }
     &::-webkit-scrollbar-thumb {
       border-radius: 7px;
-      box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
       background-color: rgb(46, 46, 46);
     }
     li {
@@ -92,21 +118,21 @@ aside.l-aside {
         color: #000;
         transform: rotate(90deg);
         text-shadow: 0 0 2px rgb(129, 129, 129);
-        >span {
+        > span {
           display: block;
           margin-top: -50%;
           text-align: center;
           transform: translateY(-50%);
         }
         &:after {
-          content: '';
+          content: "";
           position: absolute;
           top: 0;
           left: 0;
           width: 100%;
           height: 0;
           background-color: forestgreen;
-          transition: height .2s ease-out;
+          transition: height 0.2s ease-out;
         }
         &:hover {
           &:after {
@@ -117,40 +143,4 @@ aside.l-aside {
     }
   }
 }
-
-aside.r-aside {
-  display: block;
-  position: fixed;
-  top: 5px;
-  right: 0;
-  z-index: 1000;
-  &.show {
-    display: block;
-  }
-  .box {
-    position: relative;
-    width: 20px;
-    height: 100px;
-    margin-bottom: 5px;
-    background-color: rgba(0, 0, 0, 0.712);
-    border: 1px solid #000;
-    box-shadow: 0 0 5px #000;
-    >a {
-      position: absolute;
-      display: block;
-      height: 100%;
-      width: 100%;
-      top: 0;
-      left: 0;
-      font-size: 12px;
-      text-align: center;
-      >p {
-        position: absolute;
-        margin: 0;
-        padding: 0;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-    }
-  }
-}
+</style>

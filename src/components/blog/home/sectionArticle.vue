@@ -5,6 +5,16 @@
   </section>
 </template>
 <style lang="scss">
+@keyframes flipXIn {
+  0% {
+    opacity: 0;
+    transform: scale(1) rotateX(-70deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotateX(0);
+  }
+}
 @media (max-width: 768px) {
   .article {
     flex-direction: column-reverse !important;

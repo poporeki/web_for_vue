@@ -27,7 +27,7 @@
   </div>
 </template>
 <style lang="scss" scoped>
-@import "../../../../public/scss/mixins/_set-color.scss";
+@import "../../../assets/scss/mixins/_set-color.scss";
 
 .hot-list {
   position: relative;
@@ -156,7 +156,7 @@ export default {
     getData() {
       let _this = this;
       this.$axios
-        .post("https:localhost:3000/blog/article/gettop")
+        .post("http://192.168.199.208:3000/blog/article/gettop")
         .then(({ data }) => {
           _this.isRequest = false;
           _this.topData = data.data;
